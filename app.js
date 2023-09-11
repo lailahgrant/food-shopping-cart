@@ -18,8 +18,22 @@ let cart = [];
  * put in methods
  */
 
-//class for getting the products from products.json
+//class for getting all the products from products.json
 class Products{
+
+    //set up a method
+    //es6 feature: async - await that returns a promise
+    async getProducts() {
+        try {
+            let result = await fetch("products.json");
+            let data = await result.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+
 
 }
 
@@ -41,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => { //arrow fn syntax
     const ui = new UI();
     const products = new Products();
 
+    //get all products
+    products.getProducts().then(data => console.log(data)); 
 
 })
 
